@@ -17,7 +17,7 @@ export function intro(onLift, theme) {
   return new Promise((resolve) => {
     paint(theme)
     setTitle('Compator')
-    gsap.set('[data-ct]', { yPercent: 115 })
+    gsap.set('[data-ct]', { yPercent: 140 })
     gsap.set('#curtain-panel', { yPercent: 0 })
     gsap.timeline({ onComplete: () => { hide(); resolve() } })
       .to('[data-ct]', { yPercent: 0, duration: 0.9, ease: EASE, stagger: 0.07 })
@@ -35,7 +35,7 @@ export function leave(title, pageEl, theme) {
     c.style.visibility = 'visible'; c.style.pointerEvents = 'all'
     setTitle(title)
     gsap.set('#curtain-panel', { yPercent: 100 })
-    gsap.set('[data-ct]', { yPercent: 115 })
+    gsap.set('[data-ct]', { yPercent: 140 })
     gsap.timeline({ onComplete: resolve })
       .to('#curtain-panel', { yPercent: 0, duration: 1, ease: EASE })
       .to(pageEl, { scale: 0.94, opacity: 0.45, y: -80, duration: 1, ease: EASE }, 0)

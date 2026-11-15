@@ -20,7 +20,9 @@ export function mountPage(root) {
     if (!on) return
 
     // Initial hidden states (revealed by enter() / scroll)
-    gsap.set($('[data-hero-line]'), { yPercent: 105 })
+    // Hidden means fully below the mask. The mask is a little taller than the text (padding under it), so 105% left the tops of the
+    // letters showing as a row of dashes; 140% clears it with room to spare.
+    gsap.set($('[data-hero-line]'), { yPercent: 140 })
     gsap.set($('[data-hero-in]'), { y: 24, opacity: 0 })
     gsap.set($('[data-reveal]'), { opacity: 0, y: 24 })
     gsap.set($('[data-line]'), { scaleX: 0 })
@@ -229,7 +231,7 @@ export function mountPage(root) {
     const closing = root.querySelector('#closing')
     if (closing) {
       const lines = [...closing.querySelectorAll('[data-close-line]')], fades = [...closing.querySelectorAll('[data-close-fade]')]
-      gsap.set(lines, { yPercent: 105 }); gsap.set(fades, { opacity: 0, y: 28 })
+      gsap.set(lines, { yPercent: 140 }); gsap.set(fades, { opacity: 0, y: 28 })
       ScrollTrigger.create({ trigger: closing, start: 'top 60%', once: true, onEnter: () =>
         gsap.timeline({ defaults: { ease: EASE } }).to(lines, { yPercent: 0, duration: 1.2, stagger: 0.1 })
           .to(fades, { opacity: 1, y: 0, duration: 0.9, stagger: 0.12 }, '-=0.7') })

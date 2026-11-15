@@ -228,14 +228,18 @@ export function mountBelt(hero, { animate = true } = {}) {
     sim = (sim + Math.min(ms, 50) / 1000) % LOOP
     frame(sim)
   }
+  // Once the sections above have covered the hero for good, switch it off completely (not just stop drawing it), so none of its
+  // headline or shapes can ever show through a hairline seam between two sections further down the page.
+  const cover = () => { hero.style.visibility = scrollY > innerHeight * 2.4 ? 'hidden' : '' }
+  window.addEventListener('scroll', cover, { passive: true })
   let rt
   const onResize = () => { clearTimeout(rt); rt = setTimeout(() => { size(); frame(sim) }, 200) }
 
-  size(); frame(0)
+  size(); frame(0); cover()
   gsap.ticker.add(onTick)
   window.addEventListener('resize', onResize)
   return () => {
     gsap.ticker.remove(onTick); clearTimeout(rt)
-    window.removeEventListener('resize', onResize); ballEls.forEach((b) => b.remove())
+    window.removeEventListener('resize', onResize); window.removeEventListener('scroll', cover); hero.style.visibility = ''; ballEls.forEach((b) => b.remove())
   }
 }
