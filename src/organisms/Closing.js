@@ -19,10 +19,5 @@ export const Closing = () => `
         <span class="block overflow-hidden pb-[0.1em]"><span data-close-line class="block"><em>bringing</em> cloud <em>to</em></span></span>
         <span class="block overflow-hidden pb-[0.1em]"><span data-close-line class="block">communities that need it</span></span>
       </h2>
-      <p data-close-fade class="t-lead mx-auto mt-6 max-w-[520px] text-muted">Tell us where compute is needed. We will show you how little it takes to put it there.</p>
-      <div data-close-fade class="mt-10 flex flex-wrap items-center justify-center gap-4">
-        <a href="/contact" data-cursor="Let's talk" class="btn-solid t-label"><span>Start a conversation</span>${Arrow()}</a>
-        <a href="/technology" class="link t-label"><span>See the technology</span>${Arrow()}</a>
-      </div>
     </div>
   </section>`
