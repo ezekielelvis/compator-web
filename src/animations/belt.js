@@ -150,7 +150,7 @@ export function mountBelt(hero, { animate = true } = {}) {
   const size = () => {
     W = hero.clientWidth; H = hero.clientHeight; dpr = Math.min(window.devicePixelRatio || 1, 2)
     canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr)
-    S = Math.max(W / 1600, (0.5 * H) / 500); xoff = (W - 1600 * S) / 2; baseY = H - 500 * S; R = 45 * S
+    S = Math.max(W / 1600, ((W < 768 ? 0.34 : 0.5) * H) / 500); xoff = (W - 1600 * S) / 2; baseY = H - 500 * S; R = 45 * S
     col.fig = getComputedStyle(document.documentElement).getPropertyValue('--color-fig').trim() || col.fig
     col.page = getComputedStyle(ballEls[0]).backgroundColor
     ballEls.forEach((b) => { b.style.width = b.style.height = `${90 * S}px`; b.style.display = W >= 768 ? '' : 'none' }) // none on phones: it would sit on the headline

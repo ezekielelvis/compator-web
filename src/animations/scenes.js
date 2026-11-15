@@ -176,7 +176,7 @@ export function mountPage(root) {
     // overlap and blur the headline, hold in a fan, then leave up and to the right as the CTA fades.
     const fan = root.querySelector('#fan')
     const fanCards = fan ? [...fan.querySelectorAll('[data-fan-card]')] : []
-    if (fan && fanCards.length && matchMedia('(min-width:768px)').matches) {
+    if (fan && fanCards.length && matchMedia('(min-width:1024px)').matches) {
       const rest = [[0, 0, 0], [0, 0, 0], [0, -5, 6], [0, -8, 7]] // rotateX, rotateY, rotateZ once fanned (the right two tilt, as in the reference)
       const restY = [-0.05, 0.05, 0.03, -0.03] // staggered heights, as a fraction of the viewport
       const head = fan.querySelector('[data-fan-head]'), fanCta = fan.querySelector('[data-fan-cta]')
@@ -195,6 +195,17 @@ export function mountPage(root) {
         .to(fanCta, { autoAlpha: 0, duration: 0.3 }, '<')
         .to(fanCards, { y: () => -innerHeight * 1.3, x: (i) => innerWidth * (0.05 + i * 0.035), rotationX: -18, rotation: (i) => rest[i][2] + 6, duration: 1.1, ease: 'power2.in', stagger: 0.14 }, '>-0.1') // ...then the cards rise out
     }
+
+    // Partners rail (phones and tablets): the dots follow the swipe.
+    $('[data-rail]').forEach((rail) => {
+      const track = rail.querySelector('.rail-track'), dots = [...rail.querySelectorAll('.rail-dots span')]
+      const update = () => {
+        const first = track.children[0], step = first.getBoundingClientRect().width + parseFloat(getComputedStyle(track).columnGap || 14)
+        const i = Math.max(0, Math.min(dots.length - 1, Math.round(track.scrollLeft / step)))
+        dots.forEach((d, k) => d.classList.toggle('on', k === i))
+      }
+      track.addEventListener('scroll', update, { passive: true })
+    })
 
     // Home: giant marquee. Two rows of type slide against each other with scroll (skewing with scroll speed), then dim
     // behind a short statement. No card: the type is the scene.

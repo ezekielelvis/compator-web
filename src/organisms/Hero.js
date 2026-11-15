@@ -16,5 +16,5 @@ export const Hero = () => `
         <span class="block overflow-hidden pb-[0.1em]"><span data-hero-line class="block">communities that need it</span></span>
       </h1>
     </div>
-    <a href="#weare" data-hero-in class="cta t-label absolute bottom-[4vh] left-1/2 -translate-x-1/2"><span data-bob class="mr-2">${Dot()}</span><span>Enter our world</span>${down}</a>
+    <a href="#weare" data-hero-in class="cta t-label absolute bottom-[4vh] left-1/2 -translate-x-1/2 whitespace-nowrap"><span data-bob class="mr-2">${Dot()}</span><span>Enter our world</span>${down}</a>
   </section>`

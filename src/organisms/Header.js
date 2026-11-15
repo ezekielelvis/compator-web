@@ -7,7 +7,7 @@ import { navGroups } from '../data/content.js'
 // Organism: Top Navigation. Fixed like SVZ: the wordmark collapses to the "C" and the nav columns tuck away once you scroll.
 // Logo left, four tracked column groups centre, outlined button right.
 export const Header = () => `
-  <header id="site-header" class="pad-x fixed inset-x-0 top-0 z-40 grid grid-cols-[1fr_auto] items-start gap-8 py-6 lg:grid-cols-[1fr_auto_1fr]">
+  <header id="site-header" class="pad-x fixed inset-x-0 top-0 z-40 grid grid-cols-[1fr_auto] items-start gap-8 py-3 max-lg:bg-[linear-gradient(to_bottom,var(--color-paper)_62%,transparent)] lg:grid-cols-[1fr_auto_1fr] lg:py-6">
     <a href="/" aria-label="Compator home" class="justify-self-start">${Logo({ collapse: true })}</a>
     <nav data-nav-cols class="hidden grid-cols-4 gap-48 lg:grid" aria-label="Primary">${navGroups.map((g) => NavGroup(g)).join('')}</nav>
     <div class="justify-self-end">

@@ -54,9 +54,9 @@
 
   /* Type scale (sizes clamp down on small screens; desktop = exact tokens) */
   .t-display-xl { font-weight: 700; text-transform: uppercase; font-size: clamp(3.25rem, 11.5vw, var(--text-display-xl)); line-height: var(--leading-display-xl); letter-spacing: -0.08em; --em: clamp(20px, 3vw, 42px); }
-  .t-hero       { font-weight: 500; text-transform: uppercase; text-align: center; font-size: clamp(2rem, 4.7vw, 4.25rem); line-height: 0.98; letter-spacing: -0.055em; }
-  .t-hero em    { font-family: var(--font-editorialnew); font-style: italic; font-weight: 400; text-transform: none; letter-spacing: -0.01em; font-size: clamp(15px, 1.7vw, 24px); line-height: 1; padding-inline: 0; vertical-align: 0.12em; }
-  .t-mega       { font-weight: 700; text-transform: uppercase; font-size: clamp(6.5rem, 23.5vw, 24rem); line-height: 0.8; letter-spacing: -0.055em; }
+  .t-hero       { font-weight: 500; text-transform: uppercase; text-align: center; font-size: clamp(1.75rem, 4.7vw, 4.25rem); line-height: 0.98; letter-spacing: -0.055em; text-wrap: balance; }
+  .t-hero em    { font-family: var(--font-editorialnew); font-style: italic; font-weight: 400; text-transform: none; letter-spacing: -0.01em; font-size: clamp(13px, 1.7vw, 24px); line-height: 1; padding-inline: 0; vertical-align: 0.12em; }
+  .t-mega       { font-weight: 700; text-transform: uppercase; font-size: clamp(4.25rem, 21vw, 24rem); line-height: 0.8; letter-spacing: -0.055em; }
   .t-display    { font-weight: 700; text-transform: uppercase; font-size: clamp(2.75rem, 8vw, var(--text-display)); line-height: var(--leading-display); letter-spacing: -0.075em; --em: clamp(20px, 3vw, 32px); }
   .t-heading-lg { font-weight: 700; text-transform: uppercase; font-size: clamp(2.5rem, 6.4vw, var(--text-heading-lg)); line-height: var(--leading-heading-lg); letter-spacing: -0.075em; --em: clamp(20px, 2.4vw, 32px); }
   .t-heading    { font-weight: 700; text-transform: uppercase; font-size: clamp(2rem, 4.2vw, var(--text-heading)); line-height: var(--leading-heading); letter-spacing: -0.048em; --em: 0.75em; }
@@ -117,7 +117,18 @@
     border: 1px solid rgba(255,255,255,0.1); /* no backdrop-filter here: on a pinned, 3D-transformed section it makes Chrome drop the section's paint */
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), inset 0 0 30px rgba(255,255,255,0.01), 0 40px 80px -30px #000;
     display: flex; flex-direction: column; justify-content: space-between; padding: 22px 24px; text-align: left; }
-  .fan-card--flat { position: relative; left: auto; top: auto; width: 100%; aspect-ratio: auto; min-height: 220px; }
+  /* The swipeable rail used below 1024px: the same plates, scroll-snapped, the next one peeking in from the right. */
+  .partner-rail { --edge: clamp(24px, 5vw, 64px); margin-inline: calc(var(--edge) * -1); width: calc(100% + var(--edge) * 2); }
+  .rail-track { display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--edge); padding: 6px var(--edge) 10px;
+    -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain; scrollbar-width: none; text-align: left; list-style: none; }
+  .rail-track::-webkit-scrollbar { display: none; }
+  .rail-track:focus-visible { outline: 1px solid var(--color-line-strong); outline-offset: -1px; }
+  .fan-card--rail { position: relative; left: auto; top: auto; flex: none; width: min(74vw, 300px); aspect-ratio: 3 / 4; scroll-snap-align: start; }
+  @media (min-width: 640px) { .fan-card--rail { width: min(42vw, 320px); } }
+  .rail-dots { display: flex; justify-content: center; gap: 8px; margin-top: 18px; }
+  .rail-dots span { width: 6px; height: 6px; border-radius: 9999px; background: var(--color-line-strong); transition: width 250ms var(--ease-out), background 250ms var(--ease-out); }
+  .rail-dots span.on { width: 22px; background: var(--color-ink); }
+  .partner-rail > .link { display: inline-flex; }
   .fan-serif { font-family: var(--font-editorialnew); font-style: normal; font-weight: 400; font-size: clamp(15px, 1.25vw, 20px); line-height: 1.1; letter-spacing: -0.01em; color: var(--color-ink); }
   .fan-figure { align-self: flex-end; }
   .fan-brand { display: flex; align-items: center; justify-content: center; gap: 12px; font-weight: 700; font-size: clamp(18px, 1.8vw, 30px); letter-spacing: -0.03em; color: var(--color-ink); white-space: nowrap; }
@@ -135,6 +146,16 @@
   .logo-tile { display: grid; place-items: center; width: 52px; height: 52px; flex: none; overflow: hidden; border-radius: 12px; background: rgba(255,255,255,0.92); }
   .logo-tile img { width: 70%; height: 70%; object-fit: contain; }
   .logo-tile--text { background: rgba(255,255,255,0.12); color: var(--color-ink); font-weight: 700; font-size: 15px; letter-spacing: -0.02em; border: 1px solid rgba(255,255,255,0.2); }
+  /* Touch and small screens: links and buttons get a comfortable 44px hit area, and the menu button is compact. */
+  @media (max-width: 1023px), (pointer: coarse) {
+    #site-footer nav a, #mobile-menu nav a:not(.btn-outline) { padding-block: 11px; }
+    .link { min-height: 44px; }
+    #menu-btn, #menu-close { min-width: 0; min-height: 44px; padding: 10px 18px; }
+    #site-footer nav a { min-width: 44px; }
+    .field { font-size: 16px; } /* 16px+ stops iPhones zooming the page when a field is tapped */
+    select.field { min-height: 46px; }
+    #site-header a[aria-label="Compator home"] { display: inline-flex; min-height: 44px; align-items: center; }
+  }
   .dot { display: inline-block; width: 20px; height: 20px; border-radius: 9999px; background: var(--page); }
   .fig { will-change: transform; }
   .cursor-label { position: absolute; left: 50%; top: 50%; white-space: nowrap; pointer-events: none; opacity: 0; transform-origin: left center;
