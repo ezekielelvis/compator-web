@@ -126,7 +126,7 @@ export function mountPage(root) {
         return { x, y, scale: Math.min(110, (farthest / (fs * 0.075)) * 0.85) }
       }
       gsap.set(zoomMark, { willChange: 'transform' })
-      const tl = gsap.timeline({ defaults: { ease: 'none' }, scrollTrigger: { trigger: weare, start: 'top top', end: '+=230%', pin: true, scrub: true, invalidateOnRefresh: true,
+      const tl = gsap.timeline({ defaults: { ease: 'none' }, scrollTrigger: { trigger: weare, start: 'top top', end: '+=140%', pin: true, scrub: true, invalidateOnRefresh: true,
         onRefresh: () => { const g = geometry(); gsap.set(zoomMark, { transformOrigin: `${g.x}px ${g.y}px` }) },
         onUpdate: (self) => setDark(self.progress > 0.62) } })
       tl.to(zoomMark, { scale: () => geometry().scale, duration: 1, ease: 'power3.in' }, 0)
@@ -139,7 +139,7 @@ export function mountPage(root) {
     //     the keywords never move while it passes.
     //  2. The keywords themselves (no clones) then glide into a centred stack, then the button appears.
     //  3. The pin holds for one more screen while the next panel rises over it.
-    // Lenis already smooths the scroll, so scrub is `true`; only opacity/transform animate.
+    // Scrub is `true` and the browser's own scrolling drives it; only opacity/transform animate.
     const sec = root.querySelector('#manifesto')
     if (sec) {
       const words = $('#manifesto .w'), plain = words.filter((w) => !w.hasAttribute('data-kw'))
@@ -158,7 +158,7 @@ export function mountPage(root) {
           ? s.width / 2 - (k.left - s.left + k.width / 2) + cur
           : s.height * 0.44 + (i - (kws.length - 1) / 2) * 76 - (k.top - s.top + k.height / 2) + cur
       }
-      const tl = gsap.timeline({ scrollTrigger: { trigger: sec, start: 'top top', end: '+=240%', pin: true, pinSpacing: false, scrub: true, invalidateOnRefresh: true,
+      const tl = gsap.timeline({ scrollTrigger: { trigger: sec, start: 'top top', end: '+=170%', pin: true, pinSpacing: false, scrub: true, invalidateOnRefresh: true,
         onEnter: () => setDark(true), onLeave: () => setDark(false), onEnterBack: () => setDark(true) } })
       tl.fromTo(plain, { opacity: 1 }, { opacity: 0, ease: 'none', duration: 0.5, stagger: 0.02, immediateRender: false })
         // Zoom in (from the recording): the keywords leave the paragraph and swell into a big centred stack, the top
@@ -178,7 +178,7 @@ export function mountPage(root) {
     const fanCards = fan ? [...fan.querySelectorAll('[data-fan-card]')] : []
     if (fan && fanCards.length && matchMedia('(min-width:768px)').matches) {
       const rest = [[0, 0, 0], [0, 0, 0], [0, -5, 6], [0, -8, 7]] // rotateX, rotateY, rotateZ once fanned (the right two tilt, as in the reference)
-      const restY = [-0.14, 0.06, 0.04, -0.05] // staggered heights, as a fraction of the viewport
+      const restY = [-0.05, 0.05, 0.03, -0.03] // staggered heights, as a fraction of the viewport
       const head = fan.querySelector('[data-fan-head]'), fanCta = fan.querySelector('[data-fan-cta]')
       // Arrival: the section is the same black as the manifesto, so there is no edge to see. The headline simply
       // fades up out of the dark as it scrolls in (children only, the pin timeline below owns the head's own blur).
@@ -186,14 +186,14 @@ export function mountPage(root) {
         scrollTrigger: { trigger: fan, start: 'top 90%', end: 'top 15%', scrub: true } })
       gsap.fromTo(fanCta, { opacity: 0 }, { opacity: 1, ease: 'none', scrollTrigger: { trigger: fan, start: 'top 40%', end: 'top 0%', scrub: true } })
       gsap.set(fanCards, { xPercent: -50, yPercent: -50, transformPerspective: 1400 })
-      const tl = gsap.timeline({ defaults: { ease: 'none' }, scrollTrigger: { trigger: fan, start: 'top top', end: '+=280%', pin: true, scrub: true, invalidateOnRefresh: true } })
+      const tl = gsap.timeline({ defaults: { ease: 'none' }, scrollTrigger: { trigger: fan, start: 'top top', end: '+=170%', pin: true, scrub: true, invalidateOnRefresh: true } })
       tl.fromTo(fanCards,
         { y: () => innerHeight * 1.15, rotationX: 48, rotationY: (i) => rest[i][1] * 2.5, rotation: (i) => rest[i][2] * 2 },
         { y: (i) => innerHeight * restY[i], rotationX: (i) => rest[i][0], rotationY: (i) => rest[i][1], rotation: (i) => rest[i][2], duration: 1.2, ease: 'power2.out', stagger: 0.28 }, 0)
-        .to(head, { filter: 'blur(12px)', opacity: 0.3, duration: 0.9 }, 0.55)
-        .to(fanCards, { y: () => -innerHeight * 1.35, x: (i) => innerWidth * (0.05 + i * 0.035), rotationX: -18, rotation: (i) => rest[i][2] + 6, duration: 1.1, ease: 'power2.in', stagger: 0.14 }, '+=0.9')
+        .to({}, { duration: 0.6 }) // hold: the headline above, the cards below, nothing overlapping
+        .to(head, { opacity: 0, y: -30, duration: 0.4 }) // the headline leaves first...
         .to(fanCta, { autoAlpha: 0, duration: 0.3 }, '<')
-        .to(head, { opacity: 0, duration: 0.4 }, '<+=0.5')
+        .to(fanCards, { y: () => -innerHeight * 1.3, x: (i) => innerWidth * (0.05 + i * 0.035), rotationX: -18, rotation: (i) => rest[i][2] + 6, duration: 1.1, ease: 'power2.in', stagger: 0.14 }, '>-0.1') // ...then the cards rise out
     }
 
     // Home: giant marquee. Two rows of type slide against each other with scroll (skewing with scroll speed), then dim

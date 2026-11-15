@@ -1,2 +1,2 @@
-// Atom: 10px tracked uppercase metadata label (no sentences).
+// Atom: 12px tracked uppercase metadata label (no sentences).
 export const Label = (text, { cls = '' } = {}) => `<p class="t-caption ${cls}">${text}</p>`

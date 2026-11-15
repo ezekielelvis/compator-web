@@ -153,7 +153,7 @@ export function mountBelt(hero, { animate = true } = {}) {
     S = Math.max(W / 1600, (0.5 * H) / 500); xoff = (W - 1600 * S) / 2; baseY = H - 500 * S; R = 45 * S
     col.fig = getComputedStyle(document.documentElement).getPropertyValue('--color-fig').trim() || col.fig
     col.page = getComputedStyle(ballEls[0]).backgroundColor
-    ballEls.forEach((b) => { b.style.width = b.style.height = `${90 * S}px` })
+    ballEls.forEach((b) => { b.style.width = b.style.height = `${90 * S}px`; b.style.display = W >= 768 ? '' : 'none' }) // none on phones: it would sit on the headline
   }
 
   // a figure's place on screen at loop time t (t may be a hair negative, to measure velocity across the loop point)

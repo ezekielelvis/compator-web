@@ -1,13 +1,8 @@
 import { gsap } from 'gsap'
 import { CustomEase } from 'gsap/CustomEase'
 
-// Motion preference. Full motion is the default; the footer toggle turns it off (and is remembered).
-export const motionOn = () => {
-  try { return localStorage.getItem('compator-motion') !== 'off' } catch { return true }
-}
-export const setMotion = (on) => {
-  try { localStorage.setItem('compator-motion', on ? 'on' : 'off') } catch { /* private mode */ }
-}
+// Motion follows the visitor's own system setting: with "reduce motion" on, the site renders as a calm static page.
+export const motionOn = () => !(typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches)
 
 // SVZ's signature curve (read from svz.io's source: CustomEase "main", 0.65,0.01,0.05,0.99 at 0.7s).
 // Registered once and made the GSAP default so every tween shares the same feel.

@@ -6,7 +6,7 @@ export const WeAre = () => `
     <div data-weare class="w-full text-center">
       <h2 data-invert class="t-mega flex items-baseline justify-center" aria-label="We are">
         <span data-weare-piece="left">WE</span>
-        <span data-weare-piece="accent" class="font-dirtyline-36-daysoftype-2022 mx-[0.04em] inline-block text-[1.35em] font-bold normal-case italic leading-[0.5] tracking-[-0.03em]">a</span>
+        <span data-weare-piece="accent" class="font-dirtyline-36-daysoftype-2022 mx-[0.04em] inline-block text-[1.6em] font-normal normal-case italic leading-[0.5] tracking-[-0.03em]">a</span>
         <span data-weare-piece="right">RE</span>
       </h2>
     </div>

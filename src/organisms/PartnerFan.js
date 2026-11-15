@@ -19,11 +19,11 @@ const mark = (c) => c.logo
   : `<span class="fan-logo fan-logo--text">${c.badge}</span>`
 
 export const PartnerFan = () => `
-  <section id="fan" class="pad-x relative z-10 flex h-screen items-center justify-center overflow-hidden bg-paper text-center">
+  <section id="fan" class="pad-x relative z-10 flex min-h-screen flex-col items-center justify-start overflow-hidden bg-paper pt-[14vh] text-center md:h-screen">
     <div data-fan-head class="relative z-0 will-change-[filter]">
       ${Label('Partners · across the Global South', { cls: 'text-muted' })}
       <h2 class="t-hero mt-6" aria-label="Backed by partners across the global south">
-        <span class="block"><em>backed</em>by partners<em>across</em></span><span class="block">the global south</span>
+        <span class="block"><em>backed</em> by partners <em>across</em></span><span class="block">the global south</span>
       </h2>
     </div>
     <div class="pointer-events-none absolute inset-0 hidden md:block">

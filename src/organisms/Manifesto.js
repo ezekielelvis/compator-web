@@ -9,6 +9,6 @@ import { manifesto } from '../data/content.js'
 // the button waits below it.
 export const Manifesto = () => `
   <section id="manifesto" class="pad-x relative z-10 -mt-[75vh] flex min-h-screen items-center justify-center overflow-hidden bg-paper py-80 text-ink">
-    <p data-manifesto class="t-subheading relative z-10 max-w-[min(1180px,88vw)] text-justify font-light uppercase [text-wrap:pretty] md:!text-[clamp(28px,2.8vw,46px)] md:!leading-[1.1] [&_.kw]:font-normal [&_.kw]:text-[var(--page)]">${KeywordWords(manifesto)}</p>
+    <p data-manifesto class="t-subheading relative z-10 max-w-[min(1180px,88vw)] text-left font-light normal-case md:uppercase [text-wrap:pretty] md:!text-[clamp(28px,2.8vw,46px)] md:!leading-[1.1] [&_.kw]:font-normal [&_.kw]:text-[var(--page)]">${KeywordWords(manifesto)}</p>
     <div data-kw-cta class="absolute inset-x-0 top-[82%] z-10 flex items-center justify-center gap-4"><span class="text-ink">${OutlineButton({ label: 'Explore the technology', href: '/technology' })}</span>${Dot()}</div>
   </section>`

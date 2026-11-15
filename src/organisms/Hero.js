@@ -12,7 +12,7 @@ export const Hero = () => `
     <div class="relative">
       <div data-hero-in>${Label('Compator Cloud · compact hyperscale compute', { cls: 'text-muted' })}</div>
       <h1 data-invert class="t-hero mt-6" aria-label="Delivering efficient cloud for the communities that need it">
-        <span class="block overflow-hidden pb-[0.1em]"><span data-hero-line class="block"><em>delivering</em>efficient cloud<em>for the</em></span></span>
+        <span class="block overflow-hidden pb-[0.1em]"><span data-hero-line class="block"><em>delivering</em> efficient cloud <em>for the</em></span></span>
         <span class="block overflow-hidden pb-[0.1em]"><span data-hero-line class="block">communities that need it</span></span>
       </h1>
     </div>

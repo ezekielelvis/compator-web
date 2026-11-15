@@ -16,7 +16,7 @@ export const Closing = () => `
     <div class="relative w-full max-w-[1100px]">
       ${Label('Let’s build it together', { cls: 'text-muted' })}
       <h2 class="t-hero mt-6" style="font-size:clamp(2.1rem,5vw,4.5rem)" aria-label="Bringing cloud to the communities that need it">
-        <span class="block overflow-hidden pb-[0.1em]"><span data-close-line class="block"><em>bringing</em>cloud<em>to</em></span></span>
+        <span class="block overflow-hidden pb-[0.1em]"><span data-close-line class="block"><em>bringing</em> cloud <em>to</em></span></span>
         <span class="block overflow-hidden pb-[0.1em]"><span data-close-line class="block">communities that need it</span></span>
       </h2>
       <p data-close-fade class="t-lead mx-auto mt-6 max-w-[520px] text-muted">Tell us where compute is needed. We will show you how little it takes to put it there.</p>
