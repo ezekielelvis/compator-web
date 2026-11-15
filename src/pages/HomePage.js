@@ -8,12 +8,11 @@ import { Manifesto } from '../organisms/Manifesto.js'
 // import { Solution } from '../organisms/Solution.js'
 import { Gateway } from '../organisms/Gateway.js'
 import { PartnerFan } from '../organisms/PartnerFan.js'
-// The marquee repeated the value words a third time and added three screens, so it is out of the home flow.
-// import { Marquee } from '../organisms/Marquee.js'
+import { Marquee } from '../organisms/Marquee.js'
 import { Closing } from '../organisms/Closing.js'
 
 // Page: organisms composed in order. Everything after the hero sits above it (z-10) so panels rise over it.
 export const HomePage = {
   path: '/', theme: routeTheme.home, title: 'Compator Cloud | Efficient cloud computing', curtain: 'Home',
-  render: () => `${Hero()}<div class="relative z-10">${WeAre()}${Manifesto()}<div aria-hidden="true" class="bg-paper" style="height:130vh"></div>${PartnerFan()}${Gateway()}${Closing()}</div>`,
+  render: () => `${Hero()}<div class="relative z-10">${WeAre()}${Manifesto()}<div aria-hidden="true" class="bg-paper" style="height:130vh"></div>${PartnerFan()}${Marquee()}${Gateway()}${Closing()}</div>`,
 }

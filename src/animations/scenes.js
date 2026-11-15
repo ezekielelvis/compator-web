@@ -218,7 +218,7 @@ export function mountPage(root) {
       const skewTo = gsap.quickTo(rows, 'skewX', { duration: 0.5, ease: 'power3' })
       let idle
       const skew = (v) => { skewTo(v); clearTimeout(idle); idle = setTimeout(() => skewTo(0), 90) } // settle when scrolling stops
-      const tl = gsap.timeline({ defaults: { ease: 'none' }, scrollTrigger: { trigger: marq, start: 'top top', end: '+=220%', pin: true, scrub: true, invalidateOnRefresh: true,
+      const tl = gsap.timeline({ defaults: { ease: 'none' }, scrollTrigger: { trigger: marq, start: 'top top', end: '+=160%', pin: true, scrub: true, invalidateOnRefresh: true,
         onUpdate: (self) => skew(gsap.utils.clamp(-8, 8, self.getVelocity() / -250)) } })
       tl.fromTo(r1, { xPercent: 0 }, { xPercent: -50, duration: 3 }, 0)
         .fromTo(r2, { xPercent: -50 }, { xPercent: 0, duration: 3 }, 0)
