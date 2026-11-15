@@ -115,9 +115,9 @@
     </div>
   </section>`,al=e=>`<span class="pr-[0.3em]">${e}</span><span class="pr-[0.3em]">${e}</span>`,ol=()=>`
   <section id="marquee" class="relative z-10 h-[88svh] min-h-[520px] overflow-hidden bg-paper text-ink lg:-mt-[40vh] lg:h-screen">
-    <div data-marq-row="1" class="absolute left-0 top-[27%] flex -translate-y-1/2 whitespace-nowrap font-bold uppercase leading-none will-change-transform" style="font-size:17vw;letter-spacing:-0.05em" aria-hidden="true">${al(`Sovereign — Sustainable — Secure — `)}</div>
-    <div data-marq-row="2" class="marq-outline absolute left-0 top-[64%] flex -translate-y-1/2 whitespace-nowrap font-bold uppercase leading-none will-change-transform" style="font-size:17vw;letter-spacing:-0.05em" aria-hidden="true">${al(`Affordable — Local — Resilient — `)}</div>
-    <p class="sr-only">Sovereign, sustainable, secure, affordable, local, resilient.</p>
+    <div data-marq-row="1" class="absolute left-0 top-[27%] flex -translate-y-1/2 whitespace-nowrap font-bold uppercase leading-none will-change-transform" style="font-size:17vw;letter-spacing:-0.05em" aria-hidden="true">${al(`Compact — Hyperscale — Compute — `)}</div>
+    <div data-marq-row="2" class="marq-outline absolute left-0 top-[64%] flex -translate-y-1/2 whitespace-nowrap font-bold uppercase leading-none will-change-transform" style="font-size:17vw;letter-spacing:-0.05em" aria-hidden="true">${al(`Schools — Clinics — Hospitals — `)}</div>
+    <p class="sr-only">Compact hyperscale compute, for schools, clinics and hospitals.</p>
     <div data-marq-out class="pointer-events-none absolute inset-x-0 top-1/2 flex -translate-y-1/2 flex-col items-center px-6 text-center opacity-0">
       ${C(`Case in point`,{cls:`text-[var(--page)]`})}
       <h3 class="t-hero mt-4 text-ink" style="font-size:clamp(2rem,5vw,4.5rem)">Compute that needs <em>no</em> cooling</h3>
@@ -136,11 +136,6 @@
         <span class="block overflow-hidden pb-[0.1em]"><span data-close-line class="block"><em>bringing</em> cloud <em>to</em></span></span>
         <span class="block overflow-hidden pb-[0.1em]"><span data-close-line class="block">communities that need it</span></span>
       </h2>
-      <p data-close-fade class="t-lead mx-auto mt-6 max-w-[520px] text-muted">Tell us where compute is needed. We will show you how little it takes to put it there.</p>
-      <div data-close-fade class="mt-10 flex flex-wrap items-center justify-center gap-4">
-        <a href="/contact" data-cursor="Let's talk" class="btn-solid t-label"><span>Start a conversation</span>${n()}</a>
-        <a href="/technology" class="link t-label"><span>See the technology</span>${n()}</a>
-      </div>
     </div>
   </section>`,fl={path:`/`,theme:x.home,title:`Compator Cloud | Efficient cloud computing`,curtain:`Home`,render:()=>`${qc()}<div class="relative z-10">${Jc()}${Xc()}<div aria-hidden="true" class="bg-paper" style="height:130vh"></div>${il()}${ol()}${el()}${dl()}</div>`},pl=`[@media(min-width:1024px)_and_(min-height:780px)]:sticky [@media(min-width:1024px)_and_(min-height:780px)]:top-0`,ml=({label:e,title:t,text:n})=>`
   <section id="top" class="pad-x relative z-0 flex min-h-[86vh] flex-col justify-end overflow-hidden bg-paper pb-80 pt-[200px] ${pl}">
