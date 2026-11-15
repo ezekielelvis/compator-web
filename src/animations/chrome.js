@@ -33,15 +33,26 @@ export function initChrome() {
       scrollTrigger: { trigger: '#site-footer', start: 'top 85%', end: 'bottom bottom', scrub: true } })
   }
 
-  // Header (fixed): past 60px the wordmark clips down to the colour-wheel "C" and the nav columns tuck away
+  // Header (fixed): past 60px the wordmark clips down to the colour-wheel "C" and the nav columns tuck away, so the
+  // navigation never lies over the page. The state is worked out from the real scroll position every time (on scroll,
+  // after every refresh, and once now), so it is right even if the page opens already scrolled.
   const logo = document.querySelector('[data-logo]'), cols = document.querySelector('[data-nav-cols]')
-  if (motionOn() && logo) {
-    ScrollTrigger.create({ start: 60, end: 'max', onToggle: (self) => {
-      gsap.to(logo, { clipPath: self.isActive ? 'inset(0 86% 0 0)' : 'inset(0 0% 0 0)', duration: 0.6, ease: 'power3.out', overwrite: true })
+  if (logo) {
+    let tucked = null
+    const sync = () => {
+      const now = window.scrollY > 60
+      if (now === tucked) return
+      const first = tucked === null
+      tucked = now
+      const dur = motionOn() && !first ? 1 : 0 // no animation on first paint or with reduced motion: it just is the right state
+      gsap.to(logo, { clipPath: now ? 'inset(0 86% 0 0)' : 'inset(0 0% 0 0)', duration: 0.6 * dur, ease: 'power3.out', overwrite: true })
       if (cols) {
-        gsap.to(cols, { opacity: self.isActive ? 0 : 1, y: self.isActive ? -10 : 0, duration: 0.4, ease: 'power3.out', overwrite: true })
-        cols.style.pointerEvents = self.isActive ? 'none' : ''
+        gsap.to(cols, { opacity: now ? 0 : 1, y: now ? -10 : 0, duration: 0.4 * dur, ease: 'power3.out', overwrite: true })
+        cols.style.pointerEvents = now ? 'none' : ''
       }
-    } })
+    }
+    ScrollTrigger.create({ start: 0, end: 'max', onUpdate: sync, onRefresh: sync })
+    window.addEventListener('scroll', sync, { passive: true })
+    sync()
   }
 }
